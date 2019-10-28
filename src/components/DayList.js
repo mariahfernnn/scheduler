@@ -9,7 +9,6 @@ export default function DayList(props) {
   return (
   <ul>
     <DayListItem 
-      ke
       name={day.name} 
       spots={day.spots} 
       selected={day.name === props.day}
