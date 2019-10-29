@@ -21,6 +21,8 @@ import Status from "components/Appointment/Status";
 import Error from "components/Appointment/Error";
 import ErrorSaving from "components/Appointment/ErrorSaving";
 
+import Form from "components/Appointment/Form";
+
 storiesOf("Button", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -151,36 +153,52 @@ storiesOf("InterviewerListItem", module)
       interviewer={interviewer}
       onEdit={action("onEdit")}
       onDelete={action("onDelete")}
-      />
+    />
     ))
     .add("Confirm", () => (
     <Confirm
       message="Delete the appointment?"
       onConfirm={action("onConfirm")}
       onCancel={action("onCancel")}
-      />
+    />
     ))
     .add("Saving", () => (
     <StatusSaving
       message="Saving"
-      />
-      ))
+    />
+    ))
     .add("Deleting", () => (
     <Status
       message="Deleting"
-      />
+    />
     ))
     .add("Error Saving", () => (
     <ErrorSaving
       message="Could not save appointment!"
       onClose={action("onClose")}
-      />
+    />
     ))
     .add("Error Deleting", () => (
     <Error
       message="Could not delete appointment."
       onClose={action("onClose")}
-      />
+    />
+    ))
+    .add("Create", () => (
+    <Form
+      interviewers={interviewers}
+      onSave={action("onSave")}
+      onCancel={action("onCancel")}
+    />
+    ))
+    .add("Edit", () => (
+    <Form
+      name=""
+      interviewers={interviewers}
+      interviewer={interviewer.id}
+      onSave={action("onSave")}
+      onCancel={action("onCancel")}
+     />
     ))
     
 
