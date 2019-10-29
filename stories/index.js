@@ -164,7 +164,10 @@ storiesOf("InterviewerListItem", module)
        />
     ))
     .add("Error", () => (
-    <Error />
+    <Error
+      message="Could not delete appointment."
+      onClose={action("onClose")}
+       />
     ))
 
   
