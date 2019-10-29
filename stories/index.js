@@ -16,8 +16,10 @@ import Header from "components/Appointment/Header";
 import Empty from "components/Appointment/Empty";
 import Show from "components/Appointment/Show";
 import Confirm from "components/Appointment/Confirm";
+import StatusSaving from "components/Appointment/StatusSaving";
 import Status from "components/Appointment/Status";
 import Error from "components/Appointment/Error";
+import ErrorSaving from "components/Appointment/ErrorSaving";
 
 storiesOf("Button", module)
   .addParameters({
@@ -149,26 +151,38 @@ storiesOf("InterviewerListItem", module)
       interviewer={interviewer}
       onEdit={action("onEdit")}
       onDelete={action("onDelete")}
-       />
+      />
     ))
     .add("Confirm", () => (
     <Confirm
       message="Delete the appointment?"
       onConfirm={action("onConfirm")}
       onCancel={action("onCancel")}
-        />
+      />
     ))
-    .add("Status", () => (
+    .add("Saving", () => (
+    <StatusSaving
+      message="Saving"
+      />
+      ))
+    .add("Deleting", () => (
     <Status
       message="Deleting"
-       />
+      />
     ))
-    .add("Error", () => (
+    .add("Error Saving", () => (
+    <ErrorSaving
+      message="Could not save appointment!"
+      onClose={action("onClose")}
+      />
+    ))
+    .add("Error Deleting", () => (
     <Error
       message="Could not delete appointment."
       onClose={action("onClose")}
-       />
+      />
     ))
+    
 
   
 
