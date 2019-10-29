@@ -158,7 +158,9 @@ storiesOf("InterviewerListItem", module)
         />
     ))
     .add("Status", () => (
-    <Status />
+    <Status
+      message="Deleting"
+       />
     ))
 
   
