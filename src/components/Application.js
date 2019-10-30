@@ -61,13 +61,12 @@ export default function Application(props) {
   useEffect(() => {
     axios.get('/api/days')
     // .then(body => console.log(body))
-    .then(body => body.data.map(obj => ({
-      name: obj.name,
-      spots: obj.spots
-    })))
-    .then(week => {
-      // console.log(week)
-      setDays(week)
+    .then(body => {
+      let tdays = body.data.map(obj => ({
+        name: obj.name,
+        spots: obj.spots
+      }))
+      setDays(tdays);
     })
   }, [])
   
