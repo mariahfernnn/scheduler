@@ -63,15 +63,18 @@ export default function Application(props) {
   
   const setDay = day => setState({ ...state, day });
   // const setDays = days => setState(prev => ({ ...prev, days }));
-
+  
   useEffect(() => {
-    axios.get('/api/days')
-    .then(body => body.data.map(obj => ({
-        name: obj.name,
-        spots: obj.spots
-      })))
-    .then(week => setDays(week));
-  }, []);
+    // Use Promise.all to make both requests(for the days and the appointments data) before updating the state
+    Promise.all([
+      axios.get('/api/days'),
+      axios.get('api/appointments'),
+    ]).then((all) => {
+      console.log(all[0].data, all[1].data)
+      setState(prev => ({...prev, days: all[0].data, appointments: all[1].data }));
+    })
+  }, [])
+
   
   const apps = appointments.map(apps => {
     return (
