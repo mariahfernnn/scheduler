@@ -54,21 +54,26 @@ const appointments = [
 ];
 
 export default function Application(props) {
-  const [day, setDay] = useState("Monday");
+  const [state, setState] = useState({
+    day: "Monday",
+    days: [],
+    appointments: {}
+  });
+  // const [day, setDay] = useState("Monday");
+  // const [days, setDays] = useState([]);
+
   // Assisted by Guy Tonye(mentor) - How to properly render the days on the page
-  const [days, setDays] = useState([]);
 
   useEffect(() => {
     axios.get('/api/days')
     // .then(body => console.log(body))
-    .then(body => {
-      let tdays = body.data.map(obj => ({
+    .then(body => body.data.map(obj => ({
         name: obj.name,
         spots: obj.spots
-      }))
-      setDays(tdays);
+      })))
+    .then(week => {setState({...state, days : week})
     })
-  }, [])
+  }, [state])
   
   const apps = appointments.map(apps => {
     return (
@@ -89,10 +94,10 @@ export default function Application(props) {
   <hr className="sidebar__separator sidebar--centered" />
   <nav className="sidebar__menu">
   <DayList
-    key={day}
-    days={days}
-    day={day}
-    setDay={setDay}
+    key={state.day}
+    days={state.days}
+    day={state.day}
+    setDay={setState}
   />
   </nav>
   <img
