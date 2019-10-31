@@ -4,7 +4,10 @@ export default function useVisualMode(initialMode) {
   const [mode, setMode] = useState(initialMode);
   const [history, setHistory] = useState([initialMode]);
 
-  function transition(mode) {
+  function transition(mode, replace = false) {
+    if (replace) {
+      history.splice(0, 1)
+    }
     setHistory(history => [mode, ...history])
     setMode(mode)
   }
