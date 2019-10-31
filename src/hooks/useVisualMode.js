@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import Show from "components/Appointment/Show";
 
-export function useVisualMode(initialMode) {
-  const [mode, setMode] = useState(initialMode)
-  return {
-    mode 
+export default function useVisualMode(initialMode) {
+  const [mode, setMode] = useState(initialMode);
+    return { 
+      mode, 
+      transition: (mode) => setMode(mode)
   }
 }
