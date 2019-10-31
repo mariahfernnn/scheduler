@@ -15,13 +15,18 @@ export default function Appointment(props) {
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
-  );
+    );
+    
+    function onAdd() {
+      transition(CREATE)
+    }
+  
   
   return (
     <article className="appointment">
       <Header time={props.time}/>
       <div>
-      {mode === EMPTY && <Empty onAdd={props.onAdd} />}
+      {mode === EMPTY && <Empty onAdd={onAdd}/>}
       {mode === SHOW && (
         <Show
           student={props.interview.student}
