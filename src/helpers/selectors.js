@@ -20,14 +20,11 @@ export function getAppointmentsForDay(state, day) {
 
 // Assisted by Guy Tonye(mentor)
 export function getInterview(state, interview) {
-  let x = Object.keys(state.appointments)
-  
-  for (let y of x) {
-    if (state.appointments[y].interview !== null && interview !== null && interview.student === state.appointments[y].interview.student) {
-      return {
-        student : interview.student,
-        interviewer : state.interviewers[String(interview.interviewer)]
-      }
-    }
-  } 
+  if (!interview) {
+    return null;
+  }
+  return {
+    student : interview.student,
+    interviewer : state.interviewers[String(interview.interviewer)]
+  }
 }
