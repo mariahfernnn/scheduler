@@ -8,3 +8,5 @@ export default function useVisualMode(initialMode) {
       transition: (mode) => setMode(mode)
   }
 }
+
+// Transition function - assisted by Alex Wilmer(instructor)
