@@ -31,9 +31,6 @@ export default function Application(props) {
   }, [])
   
   function bookInterview(id, interview) {
-    // console.log("This is state", state)
-    // console.log("This is id", id)
-    // console.log("this is interview", interview)
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -43,7 +40,6 @@ export default function Application(props) {
       [id]: appointment
     };
     setState({...state, appointments});
-    // console.log("This is set state", appointments)
   }
   
   // Import the getAppointmentsForDay selector and use it to return an array of Appointment objs
