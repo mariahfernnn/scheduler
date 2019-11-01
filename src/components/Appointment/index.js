@@ -38,6 +38,9 @@ export default function Appointment(props) {
       props.bookInterview(props.id, interview)
       .then(() => transition(SHOW))
     }
+    function cancel(name, interviewer) {
+      props.cancelInterview(props.id, interview)
+    }
   
   return (
     <article className="appointment">
@@ -61,7 +64,7 @@ export default function Appointment(props) {
           student={props.interview.student}
           interviewer={props.interview.interviewer}
           onEdit={props.onEdit}
-          onDelete={props.onDelete}
+          onDelete={cancel}
         />
       )}
       </div>

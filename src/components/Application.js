@@ -31,7 +31,7 @@ export default function Application(props) {
   }, [])
   
   function bookInterview(id, interview) {
-    console.log(interview)
+    // console.log(interview)
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -44,6 +44,11 @@ export default function Application(props) {
     .then((response) => {
       setState({...state, appointments});
     })
+  }
+
+  function cancelInterview(id, interview) {
+    console.log("Cancelled interview--->", id)
+    console.log("Cancelled interview------>", interview)
   }
   
   // Import the getAppointmentsForDay selector and use it to return an array of Appointment objs
@@ -62,6 +67,7 @@ export default function Application(props) {
         interview={interview}
         interviewers={interviewers}
         bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
     )
   })
