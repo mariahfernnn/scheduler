@@ -47,8 +47,21 @@ export default function Application(props) {
   }
 
   function cancelInterview(id, interview) {
-    console.log("Cancelled interview--->", id)
-    console.log("Cancelled interview------>", interview)
+    // console.log("Cancelled interview--->", id)
+    // console.log("Cancelled interview------>", interview)
+    const appointment = {
+      ...state.appointments[id],
+      interview: { interview : null }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    return axios.delete(`/api/appointments/${id}`, {interview})
+    .then((response) => {
+      setState({...state, appointments});
+    })
+    
   }
   
   // Import the getAppointmentsForDay selector and use it to return an array of Appointment objs
