@@ -29,15 +29,17 @@ export default function Application(props) {
       setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data  }));
     })
   }, [])
-
+  
+  function bookInterview(id, interview) {
+    console.log(id, interview);
+  }
   
   // Import the getAppointmentsForDay selector and use it to return an array of Appointment objs
   const apps = getAppointmentsForDay(state, state.day);
 
-  
   const schedule = apps.map((app) => {
-    const interview = getInterview(state, app.interview);
     const interviewers = getInterviewersForDay(state, state.day);
+    const interview = getInterview(state, app.interview);
 
     return (
       <Appointment
@@ -47,6 +49,7 @@ export default function Application(props) {
         time={app.time}
         interview={interview}
         interviewers={interviewers}
+        bookInterview={bookInterview}
       />
     )
   })
