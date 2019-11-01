@@ -48,6 +48,9 @@ export default function Appointment(props) {
       props.cancelInterview(props.id)
       .then(() => transition(EMPTY))
     }
+    function onEdit() {
+      transition(EDIT)
+    }
   
   return (
     <article className="appointment">
@@ -63,9 +66,9 @@ export default function Appointment(props) {
       }
       {mode === EDIT && 
         <Form 
-          name=""
+          name={props.interview.student}
           interviewers={props.interviewers}
-          interviewer={props.interviewer.id}
+          interviewer={props.interview.interviewer.id}
           onSave={onSave}
           onCancel={onCancel}
         />
@@ -87,11 +90,11 @@ export default function Appointment(props) {
           message="Deleting"
         />
       }
-      {mode === SHOW && props.interview &&  
+      {mode === SHOW && props.interview && 
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
-          onEdit={() => transition(EDIT)}
+          onEdit={onEdit}
           onDelete={() => transition(CONFIRM)}
         />
       }
