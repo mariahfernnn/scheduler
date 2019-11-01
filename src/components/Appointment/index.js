@@ -9,8 +9,8 @@ import Show from "components/Appointment/Show";
 import Confirm from "components/Appointment/Confirm";
 import Status from "components/Appointment/Status";
 import StatusSaving from "components/Appointment/StatusSaving";
-// import Error from "components/Appointment/Error";
-// import ErrorSaving from "components/Appointment/ErrorSaving";
+import Error from "components/Appointment/Error";
+import ErrorSaving from "components/Appointment/ErrorSaving";
 
 import useVisualMode from "hooks/useVisualMode";
 
@@ -23,6 +23,8 @@ export default function Appointment(props) {
   const SAVING = "SAVING";
   const CONFIRM = "CONFIRM";
   const DELETING = "DELETING";
+  const ERROR_SAVE = "ERROR_SAVE";
+  const ERROR_DELETE = "ERROR_DELETE";
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
@@ -42,11 +44,13 @@ export default function Appointment(props) {
       transition(SAVING)
       props.bookInterview(props.id, interview)
       .then(() => transition(SHOW))
+      .catch(() => transition(ERROR_SAVE, true));
     }
     function onDelete() {
-      transition(DELETING)
+      transition(DELETING, true)
       props.cancelInterview(props.id)
       .then(() => transition(EMPTY))
+      .catch(() => transition(ERROR_DELETE, true));
     }
     function onEdit() {
       transition(EDIT)
@@ -77,7 +81,7 @@ export default function Appointment(props) {
         <Confirm
           message="Delete the appointment?"
           onConfirm={onDelete}
-          onCancel={onCancel}
+          onCancel={() => transition(SHOW)}
         />
       }
       {mode === SAVING &&
@@ -85,9 +89,21 @@ export default function Appointment(props) {
           message="Saving"
         />
       }
+      {mode === ERROR_SAVE &&
+        <ErrorSaving 
+          message="Could not save appointment!"
+          onClose={() => transition(EMPTY)}
+        />
+      }
       {mode === DELETING &&
         <Status
           message="Deleting"
+        />
+      }
+      {mode === ERROR_DELETE &&
+        <Error
+          message="Could not delete appointment."
+          onClose={() => transition(CONFIRM)}
         />
       }
       {mode === SHOW && props.interview && 
