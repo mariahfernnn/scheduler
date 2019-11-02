@@ -8,6 +8,7 @@ export default function Form(props) {
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, toggleError] = useState(false);
 
+  // Assisted by Vasily Klimkin(mentor)
   const onSave = () => {
     if (name && interviewer) {
       props.onSave(name, interviewer)
