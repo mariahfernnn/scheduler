@@ -4,21 +4,9 @@ Separation of Concerns - Interview Scheduler Assignment
 import { useEffect, useReducer } from "react";
 import axios from 'axios';
 
-function reducer(state, action) {
-  console.log("What is state?", state)
-  if (action.type === "SET_DAY") {
-    return { ...state, day : action.payload };
-  }
-  if (action.type === "BOOK_INTERVIEW") {
-    return {...state, appointments : action.payload };
-  }
-  if (action.type === "CANCEL_INTERVIEW") {
-    return {...state, appointments : action.payload };
-  }
-  if (action.type === "SCHED_API") {
-    return {...state, ...action.payload}
-  }
-}
+const SET_DAY = "SET_DAY";
+const SET_INTERVIEW = "SET_INTERVIEW";
+const SCHED_API = "SCHED_API";
 
 export default function useApplicationData(props) {
   const initialState = {
@@ -28,27 +16,25 @@ export default function useApplicationData(props) {
     interviewers: {}
   };
 
-  const SET_DAY = "SET_DAY";
-  const SET_INTERVIEW = "SET_INTERVIEW";
-  // const BOOK_INTERVIEW = "BOOK_INTERVIEW";
-  // const CANCEL_INTERVIEW = "CANCEL_INTERVIEW";
-  const SCHED_API = "SCHED_API";
-
-  // dispatch({ type: SET_DAY, day });
-  // dispatch({ type: SET_APPLICATION_DATA, days, appointments, interviewers });
-  // dispatch({ type: SET_INTERVIEW, id, interview });
-  // dispatch({ type: SET_INTERVIEW, id, interview: null });
+  function reducer(state, action) {
+    console.log("What is state?", state)
+    if (action.type === "SET_DAY") {
+      return { ...state, day : action.payload };
+    } else if (action.type === "SET_INTERVIEW") {
+      return {...state, appointments : {...state.appointments, ...action.payload }};
+    } else if (action.type === "SCHED_API") {
+      return {...state, ...action.payload}
+    } else {
+      console.log(`Tried to reduce with unsupported action type: ${action.type}`)
+    }
+  }
 
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  // const [state, setState] = useState({
-  //   day: "Monday",
-  //   days: [],
-  //   appointments: {},
-  //   interviewers: {}
-  // });
   
-  const setDay = day => dispatch({type: SET_DAY, day })
+  const setDay = day => dispatch({
+    type: SET_DAY, 
+    payload: { day }
+  })
   
   useEffect(() => {
     // Use Promise.all to make both requests(for the days and the appointments data) before updating the state
@@ -56,10 +42,18 @@ export default function useApplicationData(props) {
       axios.get('/api/days'),
       axios.get('api/appointments'),
       axios.get('/api/interviewers'),
-    ]).then((all) => {
-      dispatch({type: SCHED_API, initialState })
-  }, [])
-  })
+    ])
+    .then((all) => {
+      let days = all[0].data;
+      let appointments = all[1].data;
+      let interviewers = all[2].data;
+      dispatch({
+        type: SCHED_API,
+        payload: { days, appointments, interviewers }
+      })
+    })
+   }, [])
+  
 
   function bookInterview(id, interview) {
     const appointment = {
@@ -74,11 +68,10 @@ export default function useApplicationData(props) {
     .then((response) => {
       dispatch({
         type: SET_INTERVIEW,
-        payload: {...state, appointments}
+        payload: { appointments }
       })
     })
   }
-
 
   function cancelInterview(id, interview) {
     const appointment = {
@@ -93,16 +86,9 @@ export default function useApplicationData(props) {
     .then((response) => {
       dispatch({
         type: SET_INTERVIEW,
-        payload: {...state, appointments}
+        payload: { appointments }
       })
     })
   }
   return { state, setDay, bookInterview, cancelInterview }
 }
-
-  
-
-
-    
-
- 
