@@ -29,8 +29,9 @@ export default function useApplicationData(props) {
   };
 
   const SET_DAY = "SET_DAY";
-  const BOOK_INTERVIEW = "BOOK_INTERVIEW";
-  const CANCEL_INTERVIEW = "CANCEL_INTERVIEW";
+  const SET_INTERVIEW = "SET_INTERVIEW";
+  // const BOOK_INTERVIEW = "BOOK_INTERVIEW";
+  // const CANCEL_INTERVIEW = "CANCEL_INTERVIEW";
   const SCHED_API = "SCHED_API";
 
   // dispatch({ type: SET_DAY, day });
@@ -39,6 +40,7 @@ export default function useApplicationData(props) {
   // dispatch({ type: SET_INTERVIEW, id, interview: null });
 
   const [state, dispatch] = useReducer(reducer, initialState);
+
   // const [state, setState] = useState({
   //   day: "Monday",
   //   days: [],
@@ -46,10 +48,7 @@ export default function useApplicationData(props) {
   //   interviewers: {}
   // });
   
-  const setDay = day => dispatch({
-    type: SET_DAY,
-    payload: { day }
-  })
+  const setDay = day => dispatch({type: SET_DAY, day })
   
   useEffect(() => {
     // Use Promise.all to make both requests(for the days and the appointments data) before updating the state
@@ -58,10 +57,7 @@ export default function useApplicationData(props) {
       axios.get('api/appointments'),
       axios.get('/api/interviewers'),
     ]).then((all) => {
-      dispatch({
-        type: SCHED_API,
-        payload: (prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }))
-    })
+      dispatch({type: SCHED_API, initialState })
   }, [])
   })
 
@@ -77,8 +73,8 @@ export default function useApplicationData(props) {
     return axios.put(`/api/appointments/${id}`, {interview})
     .then((response) => {
       dispatch({
-        type: BOOK_INTERVIEW,
-        payload: ({...state, appointments})
+        type: SET_INTERVIEW,
+        payload: {...state, appointments}
       })
     })
   }
@@ -96,8 +92,8 @@ export default function useApplicationData(props) {
     return axios.delete(`/api/appointments/${id}`, {interview})
     .then((response) => {
       dispatch({
-        type: CANCEL_INTERVIEW,
-        payload: ({...state, appointments})
+        type: SET_INTERVIEW,
+        payload: {...state, appointments}
       })
     })
   }
