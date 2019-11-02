@@ -5,7 +5,7 @@ import { useEffect, useReducer } from "react";
 import axios from 'axios';
 
 const SET_DAY = "SET_DAY";
-const SET_INTERVIEW = "SET_INTERVIEW";
+// const SET_INTERVIEW = "SET_INTERVIEW";
 const SCHED_API = "SCHED_API";
 
 export default function useApplicationData(props) {
@@ -17,11 +17,10 @@ export default function useApplicationData(props) {
   };
 
   function reducer(state, action) {
-    console.log("What is state?", state)
     if (action.type === "SET_DAY") {
       return { ...state, day : action.payload };
-    } else if (action.type === "SET_INTERVIEW") {
-      return {...state, appointments : {...state.appointments, ...action.payload }};
+    // } else if (action.type === "SET_INTERVIEW") {
+    //   return {...state, appointments : {...state.appointments, ...action.payload }};
     } else if (action.type === "SCHED_API") {
       return {...state, ...action.payload}
     } else {
@@ -56,37 +55,65 @@ export default function useApplicationData(props) {
   
 
   function bookInterview(id, interview) {
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview }
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    };
+    // const appointment = {
+    //   ...state.appointments[id],
+    //   interview: { ...interview }
+    // };
+    // const appointments = {
+    //   ...state.appointments,
+    //   [id]: appointment
+    // };
     return axios.put(`/api/appointments/${id}`, {interview})
     .then((response) => {
-      dispatch({
-        type: SET_INTERVIEW,
-        payload: { appointments }
+      // dispatch({
+      //   type: SET_INTERVIEW,
+      //   payload: { appointments }
+      // })
+      Promise.all([
+        axios.get('/api/days'),
+        axios.get('api/appointments'),
+        axios.get('/api/interviewers'),
+      ])
+      .then((all) => {
+        let days = all[0].data;
+        let appointments = all[1].data;
+        let interviewers = all[2].data;
+        dispatch({
+          type: SCHED_API,
+          payload: { days, appointments, interviewers }
+        })
       })
     })
   }
 
   function cancelInterview(id, interview) {
-    const appointment = {
-      ...state.appointments[id],
-      interview: { interview : null }
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    };
+    // const appointment = {
+    //   ...state.appointments[id],
+    //   interview: { interview : null }
+    // };
+    // const appointments = {
+    //   ...state.appointments,
+    //   [id]: appointment
+    // };
     return axios.delete(`/api/appointments/${id}`, {interview})
     .then((response) => {
-      dispatch({
-        type: SET_INTERVIEW,
-        payload: { appointments }
+      // dispatch({
+      //   type: SET_INTERVIEW,
+      //   payload: { appointments }
+      // })
+      Promise.all([
+        axios.get('/api/days'),
+        axios.get('api/appointments'),
+        axios.get('/api/interviewers'),
+      ])
+      .then((all) => {
+        let days = all[0].data;
+        let appointments = all[1].data;
+        let interviewers = all[2].data;
+        dispatch({
+          type: SCHED_API,
+          payload: { days, appointments, interviewers }
+        })
       })
     })
   }
