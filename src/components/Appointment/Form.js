@@ -18,14 +18,14 @@ export default function Form(props) {
   //   }
   // }
 
-function validate() {
-  if (name === "") {
-    setError("Student name cannot be blank");
-    return;
+  function validate() {
+    if (name === "") {
+      setError("Student name cannot be blank");
+      return;
+    }
+    setError("");
+    props.onSave(name, interviewer);
   }
-
-  props.onSave(name, interviewer);
-}
 
   const reset = () => {
     setName("")
