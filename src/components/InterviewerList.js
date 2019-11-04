@@ -3,6 +3,17 @@ import PropTypes from "prop-types";
 import "components/InterviewerList.scss";
 import InterviewerListItem from "components/InterviewerListItem";
 
+/* 
+Validating Props:
+- validate that value = a Number 
+- and onChange = a function that is required
+*/
+
+InterviewerList.propTypes = {
+  value: PropTypes.number,
+  onChange: PropTypes.func.isRequired
+}
+
 export default function InterviewerList(props) {
   const interviewers = props.interviewers.map(interviewer => {
   return (
