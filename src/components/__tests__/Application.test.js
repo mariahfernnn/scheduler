@@ -37,10 +37,11 @@ describe("Application", () => {
 
     fireEvent.click(getByText(appointment, "Save"));
 
+    debug(appointment)
+    
     expect(getByText(appointment, "Saving")).toBeInTheDocument();
 
     // console.log(prettyDOM(appointment))
-    debug(appointment)
   });
 
 })
