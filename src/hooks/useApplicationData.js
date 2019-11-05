@@ -16,12 +16,13 @@ export default function useApplicationData(props) {
     interviewers: {}
   };
 
+  // assisted by Michael Fich(mentor) - added .day to line 22
   function reducer(state, action) {
-    if (action.type === "SET_DAY") {
-      return { ...state, day : action.payload };
+    if (action.type === SET_DAY) {
+      return { ...state, day: action.payload.day };
     // } else if (action.type === "SET_INTERVIEW") {
     //   return {...state, appointments : {...state.appointments, ...action.payload }};
-    } else if (action.type === "SCHED_API") {
+    } else if (action.type === SCHED_API) {
       return {...state, ...action.payload}
     } else {
       console.log(`Tried to reduce with unsupported action type: ${action.type}`)
@@ -39,7 +40,7 @@ export default function useApplicationData(props) {
     // Use Promise.all to make both requests(for the days and the appointments data) before updating the state
     Promise.all([
       axios.get('/api/days'),
-      axios.get('api/appointments'),
+      axios.get('/api/appointments'),
       axios.get('/api/interviewers'),
     ])
     .then((all) => {

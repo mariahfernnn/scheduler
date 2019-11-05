@@ -53,7 +53,9 @@ const fixtures = {
   }
 };
 
+// Assisted by Michael Fich(mentor) - passing both tests: issue was in useApplicationData.js in the reducer function
 export default {
+  defaults: { baseURL: "" },
   get: jest.fn(url => {
     if (url === "/api/days") {
       return Promise.resolve({
