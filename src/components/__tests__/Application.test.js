@@ -1,6 +1,6 @@
 import React from "react";
 
-import { render, cleanup, waitForElement, fireEvent } from "@testing-library/react"; 
+import { render, cleanup, waitForElement, fireEvent, getByText, prettyDOM } from "@testing-library/react"; 
 
 import Application from "components/Application";
 
@@ -20,12 +20,11 @@ describe("Application", () => {
   });
   
   it("loads data, books an interview and reduces the spots remaining for the first day by 1", async () => {
-  //   const { getByText } = render(<Application />);
+    const { container } = render(<Application />);
+
+    await waitForElement(() => getByText(container, "Archie Cohen"));
+
+    console.log(prettyDOM(container))
     
-  //   return waitForElement(() => getByText("Monday"))
-  //   .then(() => {
-  //     fireEvent.click(getByText("Tuesday"));
-  //     expect(getByText("Leopold Silvers")).toBeInTheDocument();
-  //   })
   });
 })
