@@ -23,14 +23,9 @@ describe("Application", () => {
     const { container } = render(<Application />);
 
     await waitForElement(() => getByText(container, "Archie Cohen"));
-
-    console.log(prettyDOM(container))
     
     const appointments = getAllByTestId(container, "appointment");
-    console.log(prettyDOM(appointments))
-
-    const appointment = getAllByTestId(container, "appointment")[0];
-    console.log(prettyDOM(appointment))
+    const appointment = appointments[0];
 
     fireEvent.click(getByAltText(appointment, "Add"));
 
@@ -42,6 +37,9 @@ describe("Application", () => {
 
     fireEvent.click(getByText(appointment, "Save"));
 
+    expect(getByText(appointment, "Saving")).toBeInTheDocument();
+
+    console.log(prettyDOM(appointment))
   });
 
 })
