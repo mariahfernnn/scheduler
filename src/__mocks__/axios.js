@@ -89,7 +89,8 @@ export default {
     return Promise.resolve({
       status: 204,
       statusText: "No Content",
-      data: fixtures.days.filter(day => day.id !== 1)
+      data: fixtures.days
+      // .filter(day => day.id !== 1)
     });
   })
 }
