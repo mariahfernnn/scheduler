@@ -9,14 +9,6 @@ export default function Form(props) {
   // const [error, toggleError] = useState(false);
   const [error, setError] = useState("");
   
-  // Assisted by Vasily Klimkin(mentor)
-  //   const onSave = () => {
-  //     if (name && interviewer) {
-  //       props.onSave(name, interviewer)
-  //     } else {
-  //       toggleError(true)
-  //   }
-  // }
 
   function validate() {
     if (name === "") {
@@ -24,7 +16,7 @@ export default function Form(props) {
       return;
     }
     setError("");
-    props.onSave(name, interviewer);
+    props.onSave(name, interviewer, props.isSave);
   }
 
   const reset = () => {

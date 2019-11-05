@@ -13,6 +13,7 @@ import Error from "components/Appointment/Error";
 import ErrorSaving from "components/Appointment/ErrorSaving";
 
 import useVisualMode from "hooks/useVisualMode";
+// import { create } from "react-test-renderer";
 
 
 export default function Appointment(props) {
@@ -36,13 +37,13 @@ export default function Appointment(props) {
     function onCancel() {
       back()
     }
-    function onSave(name, interviewer) {
+    function onSave(name, interviewer, createInterview) {
       const interview = {
         student: name,
         interviewer
       }
       transition(SAVING)
-      props.bookInterview(props.id, interview)
+      props.bookInterview(props.id, interview, createInterview)
       .then(() => transition(SHOW))
       .catch(() => transition(ERROR_SAVE, true));
     }
@@ -65,6 +66,7 @@ export default function Appointment(props) {
           interviewers={props.interviewers}
           onSave={onSave}
           onCancel={onCancel}
+          isSave={true}
         />
       }
       {mode === EDIT && 

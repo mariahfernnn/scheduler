@@ -88,9 +88,7 @@ export default {
   put: jest.fn(url => {
     return Promise.resolve({
       status: 204,
-      statusText: "No Content",
-      data: fixtures.days
-      // .filter(day => day.id !== 1)
+      statusText: "No Content"
     });
   })
 }
