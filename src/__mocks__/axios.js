@@ -83,8 +83,8 @@ export default {
       });
     }
   }),
-  
-  // Assisted by Tim Johns(mentor)
+
+  // Assisted by Tim Johns(mentor) - do not need if conditions
   put: jest.fn(url => {
     return Promise.resolve({
       status: 204,
