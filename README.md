@@ -1,17 +1,20 @@
 # Interview Scheduler
 
-Using the latest tools and techniques, 
+Interview Scheduler is a React-based application which allow users to book, edit or cancel interviews. This application also ensures optimal user experience, due to the different types of testing that was implemented to check its basic functionalities - from unit testing to end-to-end testing using Cypress.
 
 ## Screenshots
 
 !["Interview Scheduler"](https://github.com/mariahfernnn/scheduler/blob/master/docs/interview-scheduler.png?raw=true)
-!["Screenshot description"](url)
-!["Screenshot description"](url)
-!["Screenshot description"](url)
+!["Booking an interview"](uhttps://github.com/mariahfernnn/scheduler/blob/master/docs/booking-interview.png?raw=true)
+!["Booking an interview Error"](https://github.com/mariahfernnn/scheduler/blob/master/docs/booking-interview-error.png?raw=true)
+!["Booked Interview with hover"](https://github.com/mariahfernnn/scheduler/blob/master/docs/booked-interview-hover-on.png?raw=true)
 
-## Setup
+## Getting Started
 
-Install dependencies with `npm install`.
+1. Fork this repository, then clone your fork of this repository.
+2. Install dependencies using the `npm install` command.
+3. Start the web server using the `npm start` command. The app will be served at <http://localhost:8000/>.
+4. Go to <http://localhost:8000/> in your browser.
 
 ## Running Webpack Development Server
 
