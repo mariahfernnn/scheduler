@@ -4,9 +4,13 @@ describe("Appointments", () => {
     cy.contains("Monday");
     
     cy.get("[alt=Add]")
-    .first()
-    .click()
-    .get("[data-testid=student-name-input]")
-    .type("Lydia Miller-Jones")
+      .first()
+      .click()
+      .get("[data-testid=student-name-input]")
+      .type("Lydia Miller-Jones")
+      .get("[alt='Sylvia Palmer']")
+      .click()
+     
+      
   })
 })
