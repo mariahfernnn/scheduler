@@ -1,5 +1,7 @@
 describe("Appointments", () => {
   it("should book an interview", () => {
+    cy.request("GET", "/api/debug/reset");
+
     cy.visit("/");
     cy.contains("Monday");
     
@@ -10,7 +12,6 @@ describe("Appointments", () => {
       .type("Lydia Miller-Jones")
       .get("[alt='Sylvia Palmer']")
       .click()
-     
-      
+    cy.contains("Save").click()
   })
 })
