@@ -1,4 +1,4 @@
-import cy from "cypress";
+// import cy from "cypress";
 
 describe("Navigation", () => {
   it("should visit root", () => {
