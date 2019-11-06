@@ -12,8 +12,8 @@ describe("Navigation", () => {
     //   .click()
     // cy.contains("li", "Tuesday")
     //   .should("have.css", "background-color", "rgb(242, 242, 242)")
-    cy.contains("[data-testid=day]", "Tuesday")
+    cy.contains("li", "Tuesday")
       .click()
-    cy.contains("[data-testid=day]", "Tuesday").should("have.css", "background-color", "rgb(242, 242, 242)");
+    cy.contains("li", "Tuesday").should("have.class", "day-list__item--selected");
   });
 });
