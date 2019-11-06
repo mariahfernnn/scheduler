@@ -4,12 +4,12 @@ Separation of Concerns - Interview Scheduler Assignment
 import { useEffect, useReducer } from "react";
 import axios from 'axios';
 
-import reducer from "reducers/application";
+import reducer, { SET_DAY, SET_INTERVIEW, SCHED_API } from "reducers/application";
 
 // UNABLE TO IMPORT FROM REDUCER FUNCTION...
-const SET_DAY = "SET_DAY";
-const SET_INTERVIEW = "SET_INTERVIEW";
-const SCHED_API = "SCHED_API";
+// const SET_DAY = "SET_DAY";
+// const SET_INTERVIEW = "SET_INTERVIEW";
+// const SCHED_API = "SCHED_API";
 
 export default function useApplicationData(props) {
   const initialState = {
