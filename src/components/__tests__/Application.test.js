@@ -1,6 +1,6 @@
 import React from "react";
 
-import { render, cleanup, waitForElement, fireEvent, getByText, prettyDOM, getAllByTestId, getByAltText, getByPlaceholderText, waitForElementToBeRemoved, queryByText } from "@testing-library/react"; 
+import { render, cleanup, waitForElement, fireEvent, getByText, prettyDOM, getAllByTestId, getByAltText, getByPlaceholderText, waitForElementToBeRemoved, queryByText, queryByAltText } from "@testing-library/react"; 
 
 import Application from "components/Application";
 import useApplicationData from "hooks/useApplicationData";
@@ -39,7 +39,7 @@ describe("Application", () => {
     
     expect(getByText(appointment, "Saving")).toBeInTheDocument();
     
-    // await waitForElementToBeRemoved(() => getByText(appointment, "Saving"))
+    await waitForElementToBeRemoved(() => getByText(appointment, "Saving"))
     
     await waitForElement(() => getByText(appointment, "Lydia Miller-Jones"));
     // expect(getByText(appointment, "Lydia Miller-Jones")).toBeInTheDocument();
@@ -62,14 +62,20 @@ describe("Application", () => {
     const appointment = getAllByTestId(container, "appointment").find(
       appointment => queryByText(appointment, "Archie Cohen")
       );
-      fireEvent.click(getByAltText(appointment, "Delete"));
+      fireEvent.click(queryByAltText(appointment, "Delete"));
       // 4. Check that the confirmation message is shown.
       expect(getByText(appointment, "Delete the appointment?")).toBeInTheDocument();
       // 5. Click the "Confirm" button.
       fireEvent.click(getByText(appointment, "Confirm"));
-      console.log(prettyDOM(appointment))
-    // 6. Check that the element with the text "Deleting" is displayed.
-    // 7. Waiting until the element with the "Add" button is displayed.
-    // 6. Check that the DayListItem with the text "Monday" also has the text "2 spot remaining".
+      // 6. Check that the element with the text "Deleting" is displayed.
+      expect(getByText(appointment, "Deleting")).toBeInTheDocument();
+      // 7. Waiting until the element with the "Add" button is displayed.
+      await waitForElement(() => getByAltText(appointment, "Add"));
+      // 8. Check that the DayListItem with the text "Monday" also has the text "2 spot remaining".
+      const day = getAllByTestId(container, "day").find(day =>
+        queryByText(day, "Monday")
+      );
+      expect(getByText(day, "2 spots remaining")).toBeInTheDocument();
+      console.log(prettyDOM(day))
   })
 })
