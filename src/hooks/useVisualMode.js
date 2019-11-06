@@ -30,7 +30,5 @@ export default function useVisualMode(initialMode) {
   }
 }
 
-
 // Transition function - assisted by Alex Wilmer(instructor)
-// Avoid using push/pop in React!!! - use the spread 
 // Back function - assisted by Vasily Klimkin(mentor)

@@ -13,8 +13,6 @@ import Error from "components/Appointment/Error";
 import ErrorSaving from "components/Appointment/ErrorSaving";
 
 import useVisualMode from "hooks/useVisualMode";
-// import { create } from "react-test-renderer";
-
 
 export default function Appointment(props) {
   const EMPTY = "EMPTY";

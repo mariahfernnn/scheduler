@@ -6,10 +6,8 @@ import InterviewerList from "components/InterviewerList";
 export default function Form(props) {
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
-  // const [error, toggleError] = useState(false);
   const [error, setError] = useState("");
   
-
   function validate() {
     if (name === "") {
       setError("Student name cannot be blank");
@@ -18,6 +16,21 @@ export default function Form(props) {
     setError("");
     props.onSave(name, interviewer, props.isSave);
   }
+
+  /*
+  This version prevents the user from booking an interview if either:
+    - The student name is missing
+    - An interviewer has not been selected
+
+  function validate() {
+    if (name && interviewer) {
+      setError("");
+      props.onSave(name, interviewer, props.isSave);
+    } else {
+      setError("Must enter a name and select an interviewer!");
+    }
+  }
+  */
 
   const reset = () => {
     setName("")

@@ -18,9 +18,4 @@ export default function reducer(state, action) {
   } else {
     throw new Error ("Tried to reduce with unsupported action type")
   }
-  // return {
-  //   SET_DAY,
-  //   SET_INTERVIEW,
-  //   SCHED_API
-  // }
 }
