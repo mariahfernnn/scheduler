@@ -5,7 +5,7 @@
 ## Screenshots
 
 !["Interview Scheduler"](https://github.com/mariahfernnn/scheduler/blob/master/docs/interview-scheduler.png?raw=true)
-!["Booking an interview"](uhttps://github.com/mariahfernnn/scheduler/blob/master/docs/booking-interview.png?raw=true)
+!["Booking an interview"](https://github.com/mariahfernnn/scheduler/blob/master/docs/booking-interview.png?raw=true)
 !["Booking an interview Error"](https://github.com/mariahfernnn/scheduler/blob/master/docs/booking-interview-error.png?raw=true)
 !["Booked Interview with hover"](https://github.com/mariahfernnn/scheduler/blob/master/docs/booked-interview-hover-on.png?raw=true)
 
