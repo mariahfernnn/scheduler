@@ -1,6 +1,6 @@
 # Interview Scheduler
 
-Interview Scheduler is a React-based application which allow users to book, edit or cancel interviews. This application also ensures optimal user experience, due to the different types of testing that was implemented to check its basic functionalities - from unit testing to end-to-end testing using Cypress.
+**Interview Scheduler** is a React-based application which allow users to book, edit or cancel interviews. This application also ensures optimal user experience, due to the different types of testing that was implemented to check its basic functionalities - from unit testing to end-to-end testing using Cypress.
 
 ## Screenshots
 
