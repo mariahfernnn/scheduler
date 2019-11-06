@@ -16,7 +16,4 @@ describe("Navigation", () => {
       .click()
     cy.contains("li", "Tuesday").should("have.class", "day-list__item--selected");
   });
-  it("should book an interview", () => {
-    cy.visit("/")
-  })
 });
