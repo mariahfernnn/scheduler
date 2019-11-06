@@ -3,13 +3,14 @@
 **Interview Scheduler** is a React-based application which allow users to book, edit or cancel interviews. This application also ensures optimal user experience, due to the different types of testing that was implemented to check its basic functionalities - from unit testing to end-to-end testing using Cypress.
 
 ## Screenshots
-1. Interview Scheduler
+
+**Interview Scheduler**
 !["Interview Scheduler"](https://github.com/mariahfernnn/scheduler/blob/master/docs/interview-scheduler.png?raw=true)
-2. Booking an interview
+**Booking an interview**
 !["Booking an interview"](https://github.com/mariahfernnn/scheduler/blob/master/docs/booking-interview.png?raw=true)
-3. Booking an interview Error
+**Booking an interview Error**
 !["Booking an interview Error"](https://github.com/mariahfernnn/scheduler/blob/master/docs/booking-interview-error.png?raw=true)
-4. Booked Interview with hover
+**Booked Interview with hover**
 !["Booked Interview with hover"](https://github.com/mariahfernnn/scheduler/blob/master/docs/booked-interview-hover-on.png?raw=true)
 
 ## Getting Started
