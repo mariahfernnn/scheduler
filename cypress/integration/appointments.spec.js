@@ -40,5 +40,10 @@ describe("Appointments", () => {
       .click({ force : true })
     
     cy.contains("Confirm").click()
+
+    cy.contains("Deleting").and("exist")
+    cy.contains("Deleting").and("not.exist")
+    cy.contains(".appointment__card--show", "Archie Cohen")
+      .should("not.exist")
   })
 })
