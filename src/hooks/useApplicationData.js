@@ -4,6 +4,9 @@ Separation of Concerns - Interview Scheduler Assignment
 import { useEffect, useReducer } from "react";
 import axios from 'axios';
 
+import reducer from "reducers/application";
+
+// UNABLE TO IMPORT FROM REDUCER FUNCTION...
 const SET_DAY = "SET_DAY";
 const SET_INTERVIEW = "SET_INTERVIEW";
 const SCHED_API = "SCHED_API";
@@ -17,17 +20,17 @@ export default function useApplicationData(props) {
   };
 
   // assisted by Michael Fich(mentor) - added .day to line 22
-  function reducer(state, action) {
-    if (action.type === SET_DAY) {
-      return { ...state, day: action.payload.day };
-    } else if (action.type === "SET_INTERVIEW") {
-      return {...state, appointments: action.appointments, days: action.days};
-    } else if (action.type === SCHED_API) {
-      return {...state, ...action.payload}
-    } else {
-      console.log(`Tried to reduce with unsupported action type: ${action.type}`)
-    }
-  }
+  // function reducer(state, action) {
+  //   if (action.type === SET_DAY) {
+  //     return { ...state, day: action.payload.day };
+  //   } else if (action.type === "SET_INTERVIEW") {
+  //     return {...state, appointments: action.appointments, days: action.days};
+  //   } else if (action.type === SCHED_API) {
+  //     return {...state, ...action.payload}
+  //   } else {
+  //     console.log(`Tried to reduce with unsupported action type: ${action.type}`)
+  //   }
+  // }
 
   const [state, dispatch] = useReducer(reducer, initialState);
   
