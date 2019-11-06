@@ -19,6 +19,7 @@ describe("Application", () => {
   
     expect(getByText("Leopold Silvers")).toBeInTheDocument();
   });
+
   // Booking an interview
   it("loads data, books an interview and reduces the spots remaining for the first day by 1", async () => {
     const { container } = render(<Application />);
@@ -50,6 +51,7 @@ describe("Application", () => {
 
       expect(getByText(day, "no spots remaining")).toBeInTheDocument();
   });
+
   // Cancelling an interview
   it("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {
     // 1. Render the Application
@@ -76,6 +78,30 @@ describe("Application", () => {
         queryByText(day, "Monday")
       );
       expect(getByText(day, "2 spots remaining")).toBeInTheDocument();
+  });
+
+  // Editing an interview
+  it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
+    // 1. Render the Application.
+    const { container } = render(<Application />);
+    // 2. Find an existing interview.
+    await waitForElement(() => getByText(container, "Archie Cohen"));
+    // 3. Click the "Edit" button on the booked appointment.
+    fireEvent.click(getByAltText(container, "Edit"));
+    // 4. Change the name.
+    const appointments = getAllByTestId(container, "appointment");
+    const appointment = appointments[1];
+    fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
+      target: { value: "Lydia Miller-Jones" }
+    });
+    // 5. Click the "Save" button.
+    fireEvent.click(getByText(appointment, "Save"));
+    expect(getByText(appointment, "Saving")).toBeInTheDocument();
+    // 6. Check that the DayListItem with the text "Monday" keeps the spots remaining the same.
+    const day = getAllByTestId(container, "day").find(day =>
+      queryByText(day, "Monday")
+      );
+      expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
       console.log(prettyDOM(day))
   })
 })
