@@ -1,9 +1,9 @@
 import React from "react";
+import axios from "axios";
 
 import { render, cleanup, waitForElement, fireEvent, getByText, prettyDOM, getAllByTestId, getByAltText, getByPlaceholderText, waitForElementToBeRemoved, queryByText, queryByAltText } from "@testing-library/react"; 
 
 import Application from "components/Application";
-import useApplicationData from "hooks/useApplicationData";
 
 afterEach(cleanup);
 
@@ -102,6 +102,14 @@ describe("Application", () => {
       queryByText(day, "Monday")
       );
       expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
-      console.log(prettyDOM(day))
   })
+
+  // Mocking a mock
+  it("shows the save error when failing to save an appointment", () => {
+    axios.put.mockRejectedValueOnce();
+  });  
+
+  it("shows the delete error when failing to delete an appointment", () => {
+    axios.delete.mockRejectedValueOnce();
+  });
 })
