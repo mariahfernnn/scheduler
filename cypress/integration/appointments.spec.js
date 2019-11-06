@@ -8,10 +8,16 @@ describe("Appointments", () => {
     cy.get("[alt=Add]")
       .first()
       .click()
+
       .get("[data-testid=student-name-input]")
       .type("Lydia Miller-Jones")
       .get("[alt='Sylvia Palmer']")
       .click()
-    cy.contains("Save").click()
+
+    cy.contains("Save")
+      .click()
+    
+    cy.contains(".appointment__card--show", "Lydia Miller-Jones")
+      .contains(".appointment__card--show", "Sylvia Palmer")
   })
 })
