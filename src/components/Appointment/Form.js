@@ -21,17 +21,17 @@ export default function Form(props) {
   This version prevents the user from booking an interview if either:
     - The student name is missing
     - An interviewer has not been selected
-
-  function validate() {
-    if (name && interviewer) {
-      setError("");
-      props.onSave(name, interviewer, props.isSave);
-    } else {
-      setError("Must enter a name and select an interviewer!");
+    
+    function validate() {
+      if (name && interviewer) {
+        setError("");
+        props.onSave(name, interviewer, props.isSave);
+      } else {
+        setError("Must enter a name and select an interviewer!");
+      }
     }
-  }
   */
-
+    
   const reset = () => {
     setName("")
     setInterviewer(null)
@@ -57,9 +57,6 @@ export default function Form(props) {
         */
       />
       <section className="appointment__validation">{error}</section>
-      {/* {error && <h3><font color="red">
-        You're missing something!
-        </font></h3>} */}
     </form>
     <InterviewerList 
       interviewers={props.interviewers} 
