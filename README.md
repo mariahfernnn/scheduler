@@ -4,19 +4,19 @@
 
 ## Screenshots
 
-######**Interview Scheduler**
+###### **Interview Scheduler**
 
 !["Interview Scheduler"](https://github.com/mariahfernnn/scheduler/blob/master/docs/interview-scheduler.png?raw=true)
 
-######**Booking an interview**
+###### **Booking an interview**
 
 !["Booking an interview"](https://github.com/mariahfernnn/scheduler/blob/master/docs/booking-interview.png?raw=true)
 
-######**Booking an interview error**
+###### **Booking an interview error**
 
 !["Booking an interview Error"](https://github.com/mariahfernnn/scheduler/blob/master/docs/booking-interview-error.png?raw=true)
 
-######**Booked Interview with hover**
+###### **Booked Interview with hover**
 
 !["Booked Interview with hover"](https://github.com/mariahfernnn/scheduler/blob/master/docs/booked-interview-hover-on.png?raw=true)
 
