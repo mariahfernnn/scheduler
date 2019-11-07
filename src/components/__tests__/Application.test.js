@@ -85,6 +85,7 @@ describe("Application", () => {
   });
 
   // Editing an interview
+  // Assisted by Guy Tonye(mentor) - get rid of the act() warning
   it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
     // 1. Render the Application.
     const { container } = render(<Application />);
@@ -105,6 +106,8 @@ describe("Application", () => {
     // 5. Click the "Save" button.
     fireEvent.click(getByText(appointment, "Save"));
     expect(getByText(appointment, "Saving")).toBeInTheDocument();
+
+    await waitForElement(() => getByText(appointment, "Lydia Miller-Jones"));
 
     // 6. Check that the DayListItem with the text "Monday" keeps the spots remaining the same.
     const day = getAllByTestId(container, "day").find(day =>
